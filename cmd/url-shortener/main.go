@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"shortener/internal/lib/logger/sl"
+	"shortener/internal/storage/sqlite"
 
 	"shortener/internal/config" // Исправьте путь импорта на корректный
 )
@@ -21,6 +23,12 @@ func main() {
 	logger := setupLogger(cfg.Env)
 	logger.Info("starting IRL shortener", cfg.Env)
 	logger.Debug("debug messages are enabled")
+	storage, err := sqlite.New(cfg.StoragePath)
+	if err != nil {
+		logger.Error("failed to init storage", sl.Err(err))
+		os.Exit(1)
+	}
+	_ = storage
 }
 
 func setupLogger(env string) *slog.Logger {

@@ -2,7 +2,11 @@ module shortener
 
 go 1.23
 
-require github.com/ilyakaznacheev/cleanenv v1.5.0
+require (
+	github.com/ilyakaznacheev/cleanenv v1.5.0
+	github.com/mattn/go-sqlite3 v1.14.24
+	golang.org/x/exp v0.0.0-20250128182459-e0ece0dbea4c
+)
 
 require (
 	github.com/BurntSushi/toml v1.2.1 // indirect
